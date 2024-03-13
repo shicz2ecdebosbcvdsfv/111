@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<link rel="shortcut icon" href="clustering.png" />
+<link rel="bookmark" href="clustering.png"　/>
+<title>Junjie Dong</title>
+</head>
+<body>
+  <table summary="Table for page layout." id="tlayout">
+    <tr valign="top">
+      <td id="layout-menu">
+        <img src="clustering.png" width="60px" height="60px">
+        <div class="menu-item"><a href="index.html" class="current">主页</a></div>
+        <div class="menu-item"><a href="thesis.html">毕业论文</a></div>
+        <div class="menu-item"><a href="cooperation.html">合作项目</a></div>
+        <div class="menu-item"><a href="https://scholar.google.com/citations?hl=en&user=rj5f-1cAAAAJ">谷歌学术</a></div>
+        <div class="menu-item"><a href="https://github.com/jd445">GitHub</a></div>
+      </td>
+      <td id="layout-content">
+        <h2>毕业论文</h2>
+        <ol>
+          <li>
+            <p>董俊杰 "Peptide Detectability Prediction Based on Interpretable Classification Model", 2022 [<a href="document/Peptide Detectability Prediction Based on Interpretable Classification Model.pdf">link</a>]</p>
+            <p>"基于可解释分类模型的肽可检测性预测", 2022 [<a href="document/Peptide Detectability Prediction Based on Interpretable Classification Model.pdf">link</a>]</p>
+            指导教师： <a href="http://faculty.dlut.edu.cn/zyhe/zh_CN/index.htm">何增有教授</a><br><br>
+            <div id="pdf-viewer" style="width: 100%; height: 600px;"></div>
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </table>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js"></script>
+  <script>
+    var url = 'document/Peptide_Detectability_Prediction_Based_on_Interpretable_Classification_Model.pdf';
+    var loadingTask = pdfjsLib.getDocument(url);
+    loadingTask.promise.then(function(pdf) {
+      var viewer = document.getElementById('pdf-viewer');
+  
+      function renderPage(pageNumber) {
+        if (pageNumber > pdf.numPages) {
+          return; // 所有页面都已渲染完毕
+        }
+        pdf.getPage(pageNumber).then(function(page) {
+          var scale = 2.5;
+          var viewport = page.getViewport({ scale: scale });
+          var canvas = document.createElement('canvas');
+          var context = canvas.getContext('2d');
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+          var renderContext = {
+            canvasContext: context,
+            viewport: viewport
+          };
+          page.render(renderContext).promise.then(function() {
+            viewer.appendChild(canvas);
+            renderPage(pageNumber + 1); // 渲染下一页
+          });
+        });
+      }
+  
+      renderPage(1); // 开始渲染第一页
+    });
+  </script>
+  
+</body>
+</html>
